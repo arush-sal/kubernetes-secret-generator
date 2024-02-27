@@ -89,17 +89,17 @@ jobs:
         run: |
           echo 'cache-name=asterisk-cache-${{ matrix.platform }}' | sed 's:/:-:g' >> $GITHUB_OUTPUT
 
+      - name: Build kubernetes-secret-generator
+        run: go build -o build/_output/bin/kubernetes-secret-generator -ldflags -X=version.Version=${GITHUB_SHA::8} ./cmd/manager
+
       - name: Build and push by digest
         id: build
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./build
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
           outputs: type=image,name=${{ env.IMAGE_NAME }},push-by-digest=true,name-canonical=true,push=true
-
-      - name: Build Image
-        run: operator-sdk build "$IMAGE_NAME:latest" --go-build-args "-ldflags -X=version.Version=${GITHUB_SHA::8}"
 
   deploymaster:
     name: Deploy Latest Image
@@ -153,7 +153,7 @@ jobs:
         id: build
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./build
           push: true
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -211,7 +211,7 @@ jobs:
         id: build
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./build
           push: true
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
