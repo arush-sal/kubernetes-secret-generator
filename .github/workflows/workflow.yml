@@ -96,7 +96,8 @@ jobs:
         id: build
         uses: docker/build-push-action@v5
         with:
-          context: ./build
+          context: .
+          file: ./build/Dockerfile
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
           outputs: type=image,name=${{ env.IMAGE_NAME }},push-by-digest=true,name-canonical=true,push=true
@@ -153,7 +154,8 @@ jobs:
         id: build
         uses: docker/build-push-action@v5
         with:
-          context: ./build
+          context: .
+          file: ./b
           push: true
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -211,7 +213,8 @@ jobs:
         id: build
         uses: docker/build-push-action@v5
         with:
-          context: ./build
+          context: .
+          file: ./b
           push: true
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
