@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  kubernetes-secret-generator:
+  - apiVersion: v2
+    appVersion: v3.4.1
+    created: "2024-02-28T19:41:09.27915677+05:30"
+    description: Controller for automatically creating random secret values
+    digest: afa5dba96f1efe8a495f215ca41904dd4576265cf017188a096038cbe8959b6c
+    name: kubernetes-secret-generator
+    type: application
+    urls:
+    - kubernetes-secret-generator-3.4.1.tgz
+    version: 3.4.1
+generated: "2024-02-28T19:41:09.279163693+05:30"
