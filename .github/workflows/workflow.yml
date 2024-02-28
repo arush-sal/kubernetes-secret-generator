@@ -128,7 +128,6 @@ jobs:
         with:
           username: ${{ secrets.dockerLoginUsername }}
           password: ${{ secrets.dockerLoginPassword }}
-          registry: quay.io
 
       - name: Build kubernetes-secret-generator
         run: go build -o build/_output/bin/kubernetes-secret-generator -ldflags -X=version.Version=${GITHUB_SHA::8} ./cmd/manager
@@ -184,7 +183,6 @@ jobs:
         with:
           username: ${{ secrets.dockerLoginUsername }}
           password: ${{ secrets.dockerLoginPassword }}
-          registry: quay.io
 
       - name: Build kubernetes-secret-generator
         run: go build -o build/_output/bin/kubernetes-secret-generator -ldflags -X=version.Version=${GITHUB_REF##*/} ./cmd/manager
