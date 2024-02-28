@@ -98,11 +98,10 @@ jobs:
         with:
           context: .
           push: false
-          load: true
           file: ./build/Dockerfile
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
-          outputs: type=image,name=${{ env.IMAGE_NAME }},push-by-digest=true,name-canonical=true,push=true
+          outputs: type=image,name=${{ env.IMAGE_NAME }},name-canonical=true
 
   deploymaster:
     name: Deploy Latest Image
@@ -158,7 +157,6 @@ jobs:
         with:
           context: .
           file: ./build/Dockerfile
-          push: true
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
           outputs: type=image,name=${{ env.IMAGE_NAME }},push-by-digest=true,name-canonical=true,push=true
@@ -217,7 +215,6 @@ jobs:
         with:
           context: .
           file: ./build/Dockerfile
-          push: true
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
           outputs: type=image,name=${{ env.IMAGE_NAME }},push-by-digest=true,name-canonical=true,push=true
